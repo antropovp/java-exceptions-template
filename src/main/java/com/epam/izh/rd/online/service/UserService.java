@@ -42,11 +42,11 @@ public class UserService implements IUserService {
             throw new IllegalArgumentException("Ошибка в заполнении полей");
         }
 
-        if (new UserRepository().findByLogin(login) != null) {
-            throw new UserAlreadyRegisteredException("Пользователь с логином 'login' уже зарегистрирован");
+        if (userRepository.findByLogin(login) != null) {
+            throw new UserAlreadyRegisteredException("Пользователь с логином " + login + " уже зарегистрирован");
         }
 
-        if (password.matches("\\d")) {
+        if (password.matches("\\d+")) {
             throw new SimplePasswordException("Пароль не соответствует требованиям безопасности");
         }
 
